@@ -14,7 +14,7 @@
 
             <div class="my-table " v-for="(order, index) in myOrders" :key="index">
                 <div class="text-center">{{order.identify}}</div>
-                <div class="text-center">{{order.date}}</div>
+                <div class="text-center">{{order.date | dateformat}}</div>
                 <div class="text-center">{{order.total}}</div>
                 <div class="text-center">
                     <router-link :to="{name: 'order.detail', params: {identify: order.identify}}" class="btn btn-danger">Detalhes</router-link>

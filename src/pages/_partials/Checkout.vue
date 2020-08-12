@@ -10,6 +10,9 @@
                 <div class="col-12" v-if="me.name">
                     <p><strong>Total de produtos:</strong> {{products.length}}</p>
                     <p><strong>Preço total:</strong> {{totalCart}}</p>
+                    <p v-if="company.table.identify">
+                        <strong>Mesa: {company.table.name} </strong>
+                    </p>
                     <div class="form-group">
                         <textarea v-model="comment" name="comment" class="form-control" placeholder="Comentário do pedido" id="" cols="30" rows="2"></textarea>
                     </div>
@@ -19,6 +22,9 @@
                     <div class="col-6">
                         <p><strong>Total de produtos:</strong> {{products.length}}</p>
                         <p><strong>Preço total:</strong> {{totalCart}}</p>
+                        <p v-if="company.table.identify">
+                            <strong>Mesa: {company.table.name} </strong>
+                        </p>
                         <div class="form-group">
                             <textarea v-model="comment" name="comment" class="form-control" placeholder="Comentário do pedido" id="" cols="30" rows="2"></textarea>
                         </div>
@@ -77,7 +83,14 @@
                 let params = {
                     token_company: this.company.uuid,
                     comment: this.comment,
-                    products: [...this.products]
+                    products: [
+                        ...this.products
+                    ]
+                }
+
+                // Set table if exist
+                if(this.company.table.identify){
+                    params.table = this.company.table.identify
                 }
 
 

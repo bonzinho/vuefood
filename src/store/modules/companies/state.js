@@ -8,6 +8,11 @@ const state = {
         products: {
             data: []
         },
+        table: {
+            identify: '',
+            description: '',
+            name: ''
+        }
     },
 
     categoriesCompanySelected:{

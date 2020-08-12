@@ -22,7 +22,7 @@
               <h5 class="h6">{{item.product.description}}</h5>
               <div class="d-flex py-4 justify-content-between align-items-center">
                 <div class="col-10 d-flex align-items-center p-0 ">
-                    <h6><strong>{{item.product.price}} € <span class="text-muted">x</span></strong></h6>
+                    <h6><strong>{{item.product.price | priceformat}} € <span class="text-muted">x</span></strong></h6>
                      <div class="quantity ml-4">
                         <input type="button" value="+" class="plus" @click.prevent="incrementQty(item.product)">
                         <input type="number" step="1" max="99" min="1" :value="item.qty" title="Qty" class="qty"
@@ -42,7 +42,7 @@
           <!-- END PRODUCT -->
           <hr>
           <div class="cart-price text-red">
-              Preço Total: <b>{{totalCart}} €</b>
+              Preço Total: <b>{{totalCart | priceformat}} €</b>
           </div>
         </div>
         <!-- end card body -->

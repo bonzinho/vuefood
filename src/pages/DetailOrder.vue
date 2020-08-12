@@ -8,8 +8,9 @@
                 <ul class="p-0">
                     <li><b>Número:</b> {{identify}}</li>
                     <li><b>Total:</b> {{order.total}} €</li>
-                    <li><b>Data:</b> {{order.date}}</li>
+                    <li><b>Data:</b> {{order.date | dateformat}}</li>
                     <li><b>Status:</b> <span class="badge bg-success text-light p-2">{{order.status}}</span></li>
+                </ul>
                 </ul>
             </div>
             <div class="col-sm-6">
@@ -46,7 +47,7 @@
                     </a>
                     <div class="details-card-body">
                         <h5>{{product.name}}</h5>
-                        <p><b>{{product.price}} €</b></p>
+                        <p><b>{{product.price | priceformat}} €</b></p>
                     </div>
                 </div>
             </div>

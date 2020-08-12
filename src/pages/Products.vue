@@ -1,9 +1,14 @@
 <template>
     <div>
         <!-- About Tenant and Categories -->
-    <h1 class="my-4 title-tenant text-center">{{company.name}}</h1>
+    <h1 class="my-4 title-tenant text-center">
+        {{company.name}} (<a href="#" @click.prevent="removeCompanySelected">X</a>)
+    </h1>
+    <h2 v-if="company.table.identify">
+        Mesa: {{company.table.name}}
+        <a href="#" @click.prevent="removeTableCompany" class="">X</a>
+    </h2>
     <div class="row">
-        
         
         <div class="list-categories">
             <a :class="['list-categories__item', categoryInFilter('')]">
@@ -36,7 +41,7 @@
             <h4 class="card-title">
               <a href="#">{{product.name}}</a>
             </h4>
-            <h5>{{product.price}} €</h5>
+            <h5>{{product.price | priceformat }} €</h5>
             <p class="card-text">
               {{product.description}}
             </p>
@@ -74,14 +79,14 @@ export default {
 
   },
 
-      computed:{
-        ...mapState({
-          company: state => state.companies.companySelected,
-          categories: state => state.companies.categoriesCompanySelected,
-            productsInCart: state => state.cart.products,
+  computed:{
+    ...mapState({
+      company: state => state.companies.companySelected,
+      categories: state => state.companies.categoriesCompanySelected,
+        productsInCart: state => state.cart.products,
 
-        }),
-      },
+    }),
+  },
 
     data(){
       return {
@@ -98,7 +103,9 @@ export default {
     ]),
 
       ...mapMutations({
-          addProductCart: 'ADD_PRODUCT_CART'
+          addProductCart: 'ADD_PRODUCT_CART',
+          removeTableCompany: 'REMOVE_TABLE_COMPANY',
+          removeCompany: 'REMOVE_COMPANY_SELECTED',
       }),
 
     loadProducts(){
@@ -112,8 +119,6 @@ export default {
                 this.filters.category
             ]
         }
-
-
 
         this.getProductsByCompany(params)
             .catch(response => {
@@ -139,6 +144,11 @@ export default {
           });
         return inCart;
       },
+
+      removeCompanySelected(){
+        this.removeCompany()
+        this.$router.push({name: 'home'})
+      }
   }
 
 

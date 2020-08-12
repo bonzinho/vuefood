@@ -5,6 +5,8 @@ import Login from '@/pages/Auth/Login'
 import Register from '@/pages/Auth/Register'
 import MyOrder from '@/pages/Auth/MyOrders'
 import DetailOrder from '@/pages/DetailOrder'
+import LoadTableCompany from '@/pages/LoadTableCompany'
+import PageNotFound from '@/pages/PageNotFound'
 
 const routes = [
     {
@@ -14,7 +16,10 @@ const routes = [
             {
                 path: '/',
                 component: Home,
-                name: 'home'
+                name: 'home',
+                meta:{
+                    title: 'Home VueFood'
+                }
             },
         
             {
@@ -22,18 +27,27 @@ const routes = [
                 component: Products,
                 name: 'products',
                 props: true,
+                meta:{
+                    title: 'Produtos'
+                }
             },
         
             {
                 path: '/cart',
                 component: Cart,
-                name: 'cart'
+                name: 'cart',
+                meta:{
+                    title: 'Carrinho'
+                }
             },
 
             {
                 path: '/meus-pedidos',
                 component: MyOrder,
-                name: 'my.orders'
+                name: 'my.orders',
+                meta:{
+                    title: 'Meus Pedidos'
+                }
             },
 
             {
@@ -41,6 +55,17 @@ const routes = [
                 component: DetailOrder,
                 name: 'order.detail',
                 props: true,
+                meta:{
+                    title: 'Pedido'
+                }
+            },
+
+            {
+                path: '/:token_company/:token_table',
+                component: LoadTableCompany,
+                name: 'load.table.company',
+                props: true,
+
             },
         ]
     },
@@ -52,14 +77,28 @@ const routes = [
             {
                 path: '/login',
                 component: Login,
-                name: 'login'
+                name: 'login',
+                meta:{
+                    title: 'Login'
+                }
             },
             {
                 path: '/register',
                 component: Register,
-                name: 'register'
+                name: 'register',
+                meta:{
+                    title: 'Registo'
+                }
+
             },
         ]
+    },
+    {
+        path: '*',
+        component: PageNotFound,
+        meta:{
+            title: 'Página não encontrada'
+        }
     }
 
 
